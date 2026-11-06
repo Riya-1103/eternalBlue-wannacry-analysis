@@ -12,7 +12,7 @@ nmap -sn 192.168.91.0/24
 
 ## Observation
 The scan identified active hosts within the virtual network. The Windows 7 machine was selected as the target for further assessment.
-Evidence:
+![Evidence](../screenshot/01-host_discovery.png)
 
 ## Port and Service Scanning
 ### Objective
@@ -31,4 +31,4 @@ nmap -sV -sC -p- 192.168.91.129
 ### Observation
 The scan results were examined to identify exposed services and potential entry points.
 The SMB service was selected for further investigation because it was relevant to the MS17-010 vulnerability assessment.
-Evidence: 
+![Evidence](../screenshot/02-Service_enumeration.png)
