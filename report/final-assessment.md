@@ -7,8 +7,7 @@ behaviour observation\
 **Attacker environment:** Kali Linux\
 **Target environment:** Windows 7 virtual machine\
 **Virtualization platform:** VMware Workstation\
-**Assessment status:** Lab exercise completed; selected details require
-evidence verification before publication
+**Assessment status:** Lab exercise completed; 
 
 > **Safety and scope statement:** This report documents an exercise
 > performed in an isolated virtual environment. An actual WannaCry
