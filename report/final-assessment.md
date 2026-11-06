@@ -60,17 +60,17 @@ propagated through SMB during this experiment.
 The assessment was limited to the designated virtual machines in the
 VMware lab.
 
-  |Component                |Details|
-  |---------------|- -----------------|
- |Attacker machine |         Kali Linux|
- |Target machine|            Windows 7|
+  |Component |Details|
+  |---------------|------|
+ |Attacker machine |    Kali Linux|
+ |Target machine|   Windows 7|
   |Virtualization platform   |VMware Workstation|
   |Reconnaissance tool |      Nmap|
   |Exploitation framework |   Metasploit Framework|
   |Exploitation technique|    EternalBlue|
   |Vulnerability reference  | MS17-010; associated CVE-2017-0144|
-  |Malware    |               WannaCry sample|
- | Network environment |      Isolated virtual lab|
+  |Malware    |   WannaCry sample|
+ | Network environment |   Isolated virtual lab|
 
 ### 3.1 IP Address Verification
 
@@ -119,7 +119,7 @@ The host-discovery activity identified active hosts in the virtual
 network. The Windows 7 virtual machine was selected as the intended
 target.
 
-**Evidence to attach:** `../screenshots/01-host_discovery.png`
+**Evidence:** `../screenshots/01-host_discovery.png`
 
 ## 6. Port and Service Enumeration
 
@@ -146,7 +146,7 @@ The scan output was reviewed to identify exposed services. SMB was
 selected for further investigation because it was relevant to the
 MS17-010 vulnerability assessment.
 
-**Evidence to attach:** `../screenshots/02-Service_enumeration.png`
+**Evidence:** `../screenshots/02-Service_enumeration.png`
 
 ## 7. Vulnerability Assessment
 
@@ -229,10 +229,10 @@ The project owner reported the following effects after execution:
 -   Files were encrypted or became inaccessible.
 -   A ransom notification was displayed on the target machine.
 
-**Evidence to attach:** -
-`../screenshots/08-malware-execution.png` -
-`../screenshots/09-ransom-notification.png` -
-`../screenshots/10-before-after-attack.png`
+**Evidence:** -
+!(../screenshots/08-malware-execution.png) 
+!(../screenshots/09-ransom-notification.png)
+!(../screenshots/10-before-after-attack.png)
 
 ## 10. Analysis and Technical Interpretation
 
