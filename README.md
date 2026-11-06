@@ -44,17 +44,17 @@ establish that WannaCry propagated through SMB during this experiment.
 
 ## Lab Environment
 
-  Component                 Details
-  ------------------------- ------------------------------------
-  Virtualization            VMware Workstation
-  Attacker                  Kali Linux
-  Target                    Windows 7 virtual machine
-  Reconnaissance            Nmap
-  Exploitation framework    Metasploit Framework
-  Exploitation technique    EternalBlue
-  Vulnerability reference   MS17-010; associated CVE-2017-0144
-  Malware analysed          WannaCry sample
-  Network                   Isolated virtual lab
+  |Component  |Details|
+  |---|----|
+  |Virtualization           | VMware Workstation|
+  |Attacker                 | Kali Linux|
+  |Target                  |  Windows 7 virtual machine|
+  |Reconnaissance           | Nmap|
+  |Exploitation framework  |  Metasploit Framework|
+  |Exploitation technique   | EternalBlue|
+ | Vulnerability reference  | MS17-010; associated CVE-2017-0144|
+  |Malware analysed          |WannaCry sample|
+  |Network               |    Isolated virtual lab|
 
 ### Network addressing
 
@@ -110,6 +110,7 @@ eternalblue-wannacry-analysis/
 │   └── behaviour-analysis.md
 ├── incident-response/
 │   └── response-and-mitigation.md
+│   └── security-impact.md
 ├── screenshots/
 │   └── [sanitized evidence images]
 └── report/
