@@ -59,10 +59,7 @@ establish that WannaCry propagated through SMB during this experiment.
 ### Network addressing
 
 The working notes have referenced Kali as `192.168.91.128` and Windows 7
-as `192.168.91.129`, while a host-discovery note also mentioned
-`192.168.91.130`. Confirm the final addresses from the original
-screenshots or lab records before publishing. Do not assume that `.130`
-is the target.
+as `192.168.91.129`.
 
 ## Methodology
 
@@ -111,8 +108,6 @@ eternalblue-wannacry-analysis/
 │   ├── sample-information.md
 │   ├── execution-observations.md
 │   └── behaviour-analysis.md
-├── detection/
-│   └── detection-opportunities.md
 ├── incident-response/
 │   └── response-and-mitigation.md
 ├── screenshots/
@@ -124,18 +119,18 @@ eternalblue-wannacry-analysis/
 ## Evidence
 
 Add only sanitized screenshots that support the statements in the
-report. Suggested filenames:
+report.
 
 -   `01-host-discovery.png`
--   `02-service-enumeration.png`
--   `03-smb-vulnerability-investigation.png`
--   `04-eternalblue-session.png`
--   `05-malware-execution-observation.png`
--   `06-ransom-notification.png`
--   `07-file-state-before-after.png`
-
-Do not upload the malware sample, executable payloads, credentials,
-private keys, or sensitive host information.
+-   `02-Service-enumeration.png`
+-   `03-Vulnerability-assessment.png`
+-   `04-metasploit-framework.png`
+-   `05-eternal-blue.png`
+-   `06-Show-options.png`
+-   `07-Execution-attack.png`
+-   `08-malware-execution.png`
+-   `09-ransom-notification.png`
+-   `10-before-after-attack.png`
 
 ## Limitations
 
@@ -168,9 +163,4 @@ intentionally excludes the malware sample and operational payloads.
 -   [Microsoft Security Bulletin
     MS17-010](https://learn.microsoft.com/en-us/security-updates/securitybulletins/2017/ms17-010)
 -   [Nmap Reference Guide](https://nmap.org/book/man.html)
--   [MITRE ATT&CK](https://attack.mitre.org/)
 
-## Author
-
-Add your name, GitHub profile, and contact details here if you want them
-publicly visible.
