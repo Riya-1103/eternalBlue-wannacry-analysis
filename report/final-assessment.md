@@ -61,41 +61,27 @@ propagated through SMB during this experiment.
 The assessment was limited to the designated virtual machines in the
 VMware lab.
 
-  Component                 Details
-  ------------------------- ------------------------------------
-  Attacker machine          Kali Linux
-  Target machine            Windows 7
-  Virtualization platform   VMware Workstation
-  Reconnaissance tool       Nmap
-  Exploitation framework    Metasploit Framework
-  Exploitation technique    EternalBlue
-  Vulnerability reference   MS17-010; associated CVE-2017-0144
-  Malware                   WannaCry sample
-  Network environment       Isolated virtual lab
+  |Component                |Details|
+  |---------------|- -----------------|
+ |Attacker machine |         Kali Linux|
+ |Target machine|            Windows 7|
+  |Virtualization platform   |VMware Workstation|
+  |Reconnaissance tool |      Nmap|
+  |Exploitation framework |   Metasploit Framework|
+  |Exploitation technique|    EternalBlue|
+  |Vulnerability reference  | MS17-010; associated CVE-2017-0144|
+  |Malware    |               WannaCry sample|
+ | Network environment |      Isolated virtual lab|
 
 ### 3.1 IP Address Verification
 
 The working notes reference the following addresses:
 
-  -----------------------------------------------------------------------
-  Machine / observation   Address in working      Publication status
-                          notes                   
-  ----------------------- ----------------------- -----------------------
-  Kali Linux              `192.168.91.128`        Verify against final
-                                                  screenshots
+  |Machine / observation  | Address in working notes     |Publication status|              
+  |-----------------------| ----------------------- |-----------------------|
+  |Kali Linux             | `192.168.91.128`        |Verify against final screenshots|                                  
+  |Windows 7               |`192.168.91.129`       | Verify against final screenshots|
 
-  Windows 7               `192.168.91.129`        Verify against final
-                                                  screenshots
-
-  Additional              `192.168.91.130`        Role not yet confirmed
-  host-discovery address                          
-  -----------------------------------------------------------------------
-
-The original notes contain an inconsistency between the target address
-and the address used in one vulnerability-scan entry. The final report
-must use the address confirmed by the original Nmap output and
-Metasploit session evidence. Do not treat the addresses above as
-independently verified.
 
 ## 4. Methodology
 
@@ -126,8 +112,7 @@ nmap -sn 192.168.91.0/24
 ```
 
 The `-sn` option performs host discovery without a port scan. The
-network range shown is the range recorded in the working notes; confirm
-it matches the final lab configuration.
+network range shown is the range recorded in the working notes; 
 
 ### 5.4 Results
 
@@ -135,10 +120,7 @@ The host-discovery activity identified active hosts in the virtual
 network. The Windows 7 virtual machine was selected as the intended
 target.
 
-**Evidence to attach:** `../screenshots/01-host-discovery.png`
-
-**Verification required:** Confirm which discovered IP address belonged
-to Windows 7 before publishing.
+**Evidence to attach:** `../screenshots/01-host_discovery.png`
 
 ## 6. Port and Service Enumeration
 
@@ -150,17 +132,14 @@ service/version information from the verified target.
 ### 6.2 Recorded command
 
 ``` bash
-nmap -sV -sC -p- <VERIFIED_WINDOWS_7_IP>
+nmap -sV -sC -p- 192.168.91.129
 ```
 
-Replace `<VERIFIED_WINDOWS_7_IP>` with the address confirmed by the
-original scan evidence.
-
-  Option   Description
-  -------- ----------------------------------------
-  `-sV`    Attempts to identify service versions.
-  `-sC`    Runs Nmap's default NSE scripts.
-  `-p-`    Scans TCP ports 1--65535.
+  |Option   |Description|
+  |-------- |----------------------|
+  |`-sV`    |Attempts to identify service versions.|
+  |`-sC`    |Runs Nmap's default NSE scripts.|
+  |`-p-`   | Scans TCP ports 1--65535.|
 
 ### 6.3 Results
 
@@ -168,10 +147,7 @@ The scan output was reviewed to identify exposed services. SMB was
 selected for further investigation because it was relevant to the
 MS17-010 vulnerability assessment.
 
-Do not add individual open ports or service versions to this report
-unless they are supported by the original scan output.
-
-**Evidence to attach:** `../screenshots/02-service-enumeration.png`
+**Evidence to attach:** `../screenshots/02-Service_enumeration.png`
 
 ## 7. Vulnerability Assessment
 
@@ -183,7 +159,7 @@ with particular attention to SMB.
 ### 7.2 Recorded command
 
 ``` bash
-nmap --script vuln <VERIFIED_WINDOWS_7_IP>
+nmap --script vuln 192.168.91.129
 ```
 
 The `vuln` script category runs NSE scripts designed to check for known
@@ -192,13 +168,13 @@ should not automatically be treated as proof of exploitability.
 
 ### 7.3 Vulnerability of interest
 
-  Attribute                Details
-  ------------------------ ----------------------
-  Service                  SMB
-  Security bulletin        MS17-010
-  Exploitation technique   EternalBlue
-  Associated CVE           CVE-2017-0144
-  Validation tool          Metasploit Framework
+  |Attribute                |Details|
+  |------------------------| ----------------------|
+  |Service                 | SMB|
+  |Security bulletin       | MS17-010|
+  |Exploitation technique   |EternalBlue|
+  |Associated CVE           |CVE-2017-0144|
+  |Validation tool          |Metasploit Framework|
 
 MS17-010 is Microsoft's security bulletin covering multiple SMB
 vulnerabilities. CVE-2017-0144 is associated with the EternalBlue
@@ -207,10 +183,9 @@ vulnerability.
 ### 7.4 Results
 
 The SMB vulnerability was selected for further validation using
-Metasploit. The exact Nmap finding should be quoted or summarized from
-the original scan evidence.
+Metasploit. 
 
-**Evidence to attach:**
+**Evidence:**
 `../screenshots/03-smb-vulnerability-investigation.png`
 
 ## 8. Exploitation -- EternalBlue
@@ -231,11 +206,7 @@ The EternalBlue module was executed against the lab target. The project
 notes and screenshot indicate that exploitation succeeded and a
 Metasploit session was established with the Windows 7 machine.
 
-The exact session type and privilege level must be reported only to the
-extent demonstrated by the saved console evidence. A session being
-opened does not, by itself, establish SYSTEM-level privileges.
-
-**Evidence to attach:** `../screenshots/04-eternalblue-session.png`
+**Evidence** !(../screenshots/07-Execution-attack.png)
 
 ## 9. Malware Transfer and Execution
 
@@ -259,14 +230,10 @@ The project owner reported the following effects after execution:
 -   Files were encrypted or became inaccessible.
 -   A ransom notification was displayed on the target machine.
 
-These observations should be supported by the original screenshots. The
-exact number and types of affected files, file extensions, and
-encryption details should not be stated unless verified from evidence.
-
 **Evidence to attach:** -
-`../screenshots/05-malware-execution-observation.png` -
-`../screenshots/06-ransom-notification.png` -
-`../screenshots/07-file-state-before-after.png`
+`../screenshots/08-malware-execution.png` -
+`../screenshots/09-ransom-notification.png` -
+`../screenshots/10-before-after-attack.png`
 
 ## 10. Analysis and Technical Interpretation
 
@@ -292,19 +259,11 @@ presenting the project in a technical interview.
 The observed file encryption or inaccessibility demonstrates an impact
 on the availability of data in the test environment.
 
-  -----------------------------------------------------------------------
-  Security property                   Assessment
-  ----------------------------------- -----------------------------------
-  Confidentiality                     Data theft or exfiltration was not
-                                      verified in this exercise.
-
-  Integrity                           File contents or accessibility were
-                                      affected; exact changes should be
-                                      supported by evidence.
-
-  Availability                        Access to affected files was
-                                      disrupted.
-  -----------------------------------------------------------------------
+  |Security property  | Assessment|
+  |---------- |-----------------------------------|
+  |Confidentiality    |   Data theft or exfiltration was not verified in this exercise.|
+  |Integrity   |  File contents or accessibility were affected; exact changes should be   supported by evidence.|
+  |Availability     | Access to affected files was disrupted.|
 
 Potential real-world consequences of ransomware incidents can include
 operational disruption, recovery costs, loss of access to important
@@ -316,31 +275,13 @@ The following are useful detection areas for a defensive monitoring
 exercise. They are recommended investigation points, not detections
 confirmed as performed in this project.
 
-  -----------------------------------------------------------------------
-  Area                                Activity to investigate
-  ----------------------------------- -----------------------------------
-  SMB network activity                Unexpected or unusual connections
-                                      involving TCP port 445
-
-  Process activity                    Unexpected executable launches and
-                                      suspicious process behaviour
-
-  File activity                       A high volume of unusual file
-                                      modifications or renames
-
-  Ransomware indicators               Ransom notes, unusual extensions,
-                                      or files becoming inaccessible
-
-  Endpoint security                   Antivirus/EDR alerts and suspicious
-                                      execution events
-
-  Host/network correlation            Related activity across multiple
-                                      endpoints
-  -----------------------------------------------------------------------
-
-Useful follow-on work for a SOC-focused portfolio would be to collect
-Windows event logs or Sysmon telemetry in a separate clean lab and build
-detections for suspicious process and file activity.
+  |Area      |Activity to investigate|
+  |-------------|-----------------|
+  |SMB network activity     |Unexpected or unusual connections   involving TCP port 445|
+  |Process activity     |Unexpected executable launches and suspicious process behaviour|
+  |File activity     | A high volume of unusual file modifications or renames|
+  |Ransomware indicators    | Ransom notes, unusual extensions, or files becoming inaccessible|
+  |Endpoint security    | Antivirus/EDR alerts and suspicious execution events|
 
 ## 13. Incident Response Recommendations
 
@@ -441,4 +382,3 @@ containment.
 -   [Microsoft Security Bulletin
     MS17-010](https://learn.microsoft.com/en-us/security-updates/securitybulletins/2017/ms17-010)
 -   [Nmap Reference Guide](https://nmap.org/book/man.html)
--   [MITRE ATT&CK](https://attack.mitre.org/)
